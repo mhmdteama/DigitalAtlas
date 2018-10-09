@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Digital Atlas</string>
+    <string name="registration">Registration</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="don_t_have_account_create_one">Don\'t have Account ? Create one</string>
+    <string name="register">Register</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="digital_atlas">Digital Atlas</string>
+    <string name="logoview">logoView</string>
+</resources>
