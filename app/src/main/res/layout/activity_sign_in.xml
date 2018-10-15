@@ -20,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="@string/registration"
+                android:text="Signin"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
                 android:textSize="30sp" />
@@ -37,7 +37,7 @@
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@drawable/img"
+            android:background="@drawable/mainlogo"
             android:contentDescription="@string/logoview" />
             <TextView
                 android:layout_width="wrap_content"
@@ -86,25 +86,28 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/register"
+            android:text="Signin"
             android:textSize="30sp"
             android:textColor="#ffffff"
             android:background="@drawable/rounded_button"
             android:layout_gravity="center"
             android:gravity="center"
+            android:id="@+id/signin"
             android:layout_marginTop="30dp"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_button2"
             android:text="@string/don_t_have_account_create_one"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:id="@+id/creat"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/forget_password"
             android:background="@drawable/rounded_button2"
-            android:layout_margin="20dp"/>
+            android:layout_margin="20dp"
+            android:id="@+id/forgetpass"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -87,7 +87,17 @@
             android:hint="Password"
             android:padding="15dp"
             android:background="@drawable/rounded_edittext_focused"/>
-        <EditText
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:inputType="text"
+                android:hint="User Name"
+                android:padding="15dp"
+                android:background="@drawable/rounded_edittext_focused"
+                />
+            <EditText
             android:id="@+id/mobnum"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -116,6 +126,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:text="Register"
+                android:id="@+id/register"
                 android:textSize="30sp"
                 android:textColor="#ffffff"
                 android:background="@drawable/rounded_button"
