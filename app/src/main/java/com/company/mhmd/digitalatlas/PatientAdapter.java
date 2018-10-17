@@ -1,4 +1,4 @@
-package com.example.mhmd.digitalatlas;
+package com.company.mhmd.digitalatlas;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

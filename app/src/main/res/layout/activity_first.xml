@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.mhmd.digitalatlas.FirstActivity"
+    tools:context="com.example.mhmd.digitalatlas.com.myApps.mhmd.digitalatlas.FirstActivity"
     android:layout_gravity="center"
     android:gravity="center">
     <ImageView

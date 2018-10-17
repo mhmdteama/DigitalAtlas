@@ -1,4 +1,4 @@
-package com.example.mhmd.digitalatlas;
+package com.company.mhmd.digitalatlas;
 public class Patient {
     private String name;
     private String userId;

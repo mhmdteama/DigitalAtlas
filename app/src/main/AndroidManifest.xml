@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mhmd.digitalatlas">
+    package="com.company.mhmd.digitalatlas">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -42,9 +42,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".AddPatient" />
         <activity android:name=".AddfindigByAdmin" />
-        <activity android:name=".AddfindingbyUsesr"></activity>
-
-
+        <activity android:name=".AddfindingbyUsesr" />
+        <activity android:name=".AdminMain"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.example.mhmd.digitalatlas;
+package com.company.mhmd.digitalatlas;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -21,7 +21,6 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.net.URI;
 import java.util.UUID;
 
 

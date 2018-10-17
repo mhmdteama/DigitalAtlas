@@ -1,6 +1,5 @@
-package com.example.mhmd.digitalatlas;
+package com.company.mhmd.digitalatlas;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,37 +15,24 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
-public class SignIn extends AppCompatActivity {
+public class Regestration extends AppCompatActivity {
     String GET_JSON_DATA_HTTP_URL;
-    TinyDB tinyDB ;
-    EditText username , pass;
-    Button siginIn , creat , forget;
+    EditText studentId,fn,ln,email,pass,phone,position,username;
+    Button register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
-        new TinyDB(getApplicationContext());
-        username = findViewById(R.id.username);
+        setContentView(R.layout.activity_regestration);
+        studentId = findViewById(R.id.studentid);
+        fn = findViewById(R.id.fn);
+        ln = findViewById(R.id.ln);
+        email = findViewById(R.id.email);
+        position = findViewById(R.id.position);
+        register = findViewById(R.id.register);
         pass = findViewById(R.id.password);
-        siginIn = findViewById(R.id.signin);
-        forget = findViewById(R.id.forgetpass);
-        creat = findViewById(R.id.creat);
-        forget.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SignIn.this,ForgetPassword.class);
-                startActivity(intent);
-            }
-        });
-        creat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SignIn.this,Regestration.class);
-                startActivity(intent);
-            }
-        });
-        siginIn.setOnClickListener(new View.OnClickListener() {
+        phone = findViewById(R.id.mobnum);
+        username =findViewById(R.id.username);
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 volleyConnection();
@@ -56,8 +42,7 @@ public class SignIn extends AppCompatActivity {
     }
     public void volleyConnection()
     {
-        GET_JSON_DATA_HTTP_URL = "http://atlas.alosboiya.com.sa/atlas.asmx/login_campany?";
-        // http://atlas.alosboiya.com.sa/atlas.asmx?op=login_campany
+        GET_JSON_DATA_HTTP_URL = "http://alosboiya.com.sa/atlas.asmx/insert_pat?";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, GET_JSON_DATA_HTTP_URL,
 
@@ -65,15 +50,10 @@ public class SignIn extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         showMessage(response);
-                        if (Objects.equals(response, "False"))
-                        {
-
-                            showMessage("Invalid user name or password ");
-
+                        if(Objects.equals(response, "True")){
+                            showMessage("Registration  Done Successful Congratulations ");
                         }else {
-                            Intent intent = new Intent(SignIn.this,MainActivity.class);
-                            startActivity(intent);
-                           // tinyDB.putString("userID",response);
+                            showMessage("Failed pleas Try Again ");
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -89,9 +69,13 @@ public class SignIn extends AppCompatActivity {
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<>();
+                params.put("name", fn.getText().toString());
+                params.put("lastname", ln.getText().toString());
+                params.put("phone", phone.getText().toString());
+                params.put("email", email.getText().toString());
+                params.put("companyname", studentId.getText().toString());
+                params.put("postion", position.getText().toString());
                 params.put("username", username.getText().toString());
-                params.put("pass", pass.getText().toString());
-
                 return params;
             }
 
@@ -104,5 +88,4 @@ public class SignIn extends AppCompatActivity {
     private void showMessage(String _s) {
         Toast.makeText(getApplicationContext(), _s, Toast.LENGTH_LONG).show();
     }
-
 }

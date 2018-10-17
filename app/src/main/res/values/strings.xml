@@ -7,5 +7,18 @@
     <string name="password">Password</string>
     <string name="username">Username</string>
     <string name="digital_atlas">Digital Atlas</string>
+    <string name="spinner">AndroidSpinnerExample</string>
     <string name="logoview">logoView</string>
+    <string-array name="genders">
+        <item>Gender</item>
+    </string-array>
+    <string-array name="ages">
+        <item>Age</item>
+    </string-array>
+    <string-array name="systems">
+        <item>System</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.mhmd.digitalatlas;
+package com.company.mhmd.digitalatlas;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -18,11 +18,11 @@ public class FirstActivity extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(FirstActivity.this ,SignIn.class);
+                Intent intent = new Intent(FirstActivity.this ,AdminMain.class);
                 startActivity(intent);
                 finish();
             }
-        }, 4000);
+        }, 3000);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
