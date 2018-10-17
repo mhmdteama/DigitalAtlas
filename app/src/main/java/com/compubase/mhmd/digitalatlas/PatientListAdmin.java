@@ -31,7 +31,7 @@ public class PatientListAdmin extends Fragment {
     RecyclerView.LayoutManager layoutManager;
     View view;
     ArrayList<Patient> patients;
-    String URL = "http://atlas.alosboiya.com.sa/atlas.asmx/select_all_note?";
+    String URL = "http://atlas.alosboiya.com.sa/atlas.asmx/select_all_pat_for_admin?";
     RequestQueue requestQueue;
     PatientAdapter adapter;
     public PatientListAdmin() {
