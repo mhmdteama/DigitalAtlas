@@ -6,12 +6,7 @@ public class Patient {
     private String image;
 
 
-    public Patient(String name, String userId, String email, String image) {
-        this.name = name;
-        this.userId = userId;
-        this.email = email;
-        this.image = image;
-    }
+
 
     public String getName() {
         return name;

@@ -82,9 +82,7 @@ public class AddPatient extends AppCompatActivity {
     }
     private void volleyConnection()
     {
-        String GET_JSON_DATA_HTTP_URL = "http://atlas.alosboiya.com.sa/atlas.asmx?op=insert_pat";
-        //http://atlas.alosboiya.com.sa/atlas.asmx?op=insert_pat
-
+        String GET_JSON_DATA_HTTP_URL = "http://atlas.alosboiya.com.sa/atlas.asmx?op=insert_pat?";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, GET_JSON_DATA_HTTP_URL,
 
                 new Response.Listener<String>() {

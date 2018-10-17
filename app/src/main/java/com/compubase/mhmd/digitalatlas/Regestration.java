@@ -1,5 +1,6 @@
 package com.compubase.mhmd.digitalatlas;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -52,6 +53,8 @@ public class Regestration extends AppCompatActivity {
                         showMessage(response);
                         if(Objects.equals(response, "True")){
                             showMessage("Registration  Done Successful Congratulations ");
+                            Intent intent = new Intent(Regestration.this,AddPatient.class);
+                            startActivity(intent);
                         }else {
                             showMessage("Failed pleas Try Again ");
                         }

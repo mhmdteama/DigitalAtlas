@@ -15,6 +15,7 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHold
     ArrayList<Patient> people;
     public PatientAdapter(Context context , ArrayList<Patient> list)
     {
+
         people = list;
     }
     public class ViewHolder extends RecyclerView.ViewHolder

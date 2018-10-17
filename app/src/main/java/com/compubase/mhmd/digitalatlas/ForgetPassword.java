@@ -29,7 +29,7 @@ public class ForgetPassword extends AppCompatActivity {
     }
     private void volleyConnection()
     {
-        GET_JSON_DATA_HTTP_URL = "http://atlas.alosboiya.com.sa/atlas.asmx?op=forgete_password";
+        GET_JSON_DATA_HTTP_URL = "http://atlas.alosboiya.com.sa/atlas.atlas.asmx/forgete_password?";
         // http://atlas.alosboiya.com.sa/atlas.asmx?op=login_campany
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, GET_JSON_DATA_HTTP_URL,
@@ -44,7 +44,7 @@ public class ForgetPassword extends AppCompatActivity {
                             showMessage("Invalid user name or password ");
 
                         }else {
-                            Intent intent = new Intent(ForgetPassword.this,MainActivity.class);
+                            Intent intent = new Intent(ForgetPassword.this,SignIn.class);
                             startActivity(intent);
                             // tinyDB.putString("userID",response);
                         }

@@ -113,7 +113,7 @@ public class Add_Finding2ByAdmin extends AppCompatActivity {
         approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Add_Finding2ByAdmin.this,MainActivity.class);
+                Intent intent = new Intent(Add_Finding2ByAdmin.this,AddfindigByAdmin.class);
                 startActivity(intent);
             }
         });

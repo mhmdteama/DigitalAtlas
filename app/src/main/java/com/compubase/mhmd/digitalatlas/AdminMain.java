@@ -13,7 +13,7 @@ public class AdminMain extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_main);
+        setContentView(R.layout.fragment_patient_list_admin);
         AdminFragment frag = new AdminFragment();
         final AddPatientFragment addPatientFragment = new AddPatientFragment();
         final PatientListAdmin patientListAdmin = new  PatientListAdmin();
@@ -22,7 +22,6 @@ public class AdminMain extends AppCompatActivity {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
        fragmentTransaction.add(R.id.cotainer , frag);
-        //fragmentTransaction.replace(R.id.fragment_container, mFeedFragment);
         fragmentTransaction.commit();
         add = findViewById(R.id.adds);
         add.setOnClickListener(new View.OnClickListener() {
