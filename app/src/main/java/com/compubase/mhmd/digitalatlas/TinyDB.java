@@ -19,7 +19,7 @@
  *  and unicode 2017 that are used for separating the items in a list.
  */
 
-package com.company.mhmd.digitalatlas;
+package com.compubase.mhmd.digitalatlas;
 
 import android.content.Context;
 import android.content.SharedPreferences;

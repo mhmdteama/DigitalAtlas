@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.company.mhmd.digitalatlas.Admin_Notifications">
+    tools:context="com.compubase.mhmd.digitalatlas.Admin_Notifications">
 
 
 </LinearLayout>

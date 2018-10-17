@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1014139933297:android:8cf2e35c1d52396b",
         "android_client_info": {
-          "package_name": "com.company.mhmd.digitalatlas"
+          "package_name": "com.compubase.mhmd.digitalatlas"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "1014139933297-gmgvi8da38pufmdhj5fkb17tpu6p2u7s.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.company.mhmd.digitalatlas",
+            "package_name": "com.compubase.mhmd.digitalatlas",
             "certificate_hash": "c19d301fa3debb8b98ec317dc6623ff04db50fbb"
           }
         },

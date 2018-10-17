@@ -1,4 +1,4 @@
-package com.company.mhmd.digitalatlas;
+package com.compubase.mhmd.digitalatlas;
 
 
 import android.os.Bundle;
@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AdminFragment extends Fragment {
+public class PatientListAdmin extends Fragment {
 
 
-    public AdminFragment() {
+    public PatientListAdmin() {
         // Required empty public constructor
     }
 
@@ -23,7 +23,7 @@ public class AdminFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.adminfragment, container, false);
+        return inflater.inflate(R.layout.fragment_patient_list_admin, container, false);
     }
 
 }

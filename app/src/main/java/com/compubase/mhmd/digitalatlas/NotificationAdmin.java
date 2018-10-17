@@ -1,4 +1,4 @@
-package com.company.mhmd.digitalatlas;
+package com.compubase.mhmd.digitalatlas;
 
 
 import android.os.Bundle;

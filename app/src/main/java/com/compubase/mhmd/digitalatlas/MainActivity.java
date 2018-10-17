@@ -1,13 +1,13 @@
-package com.company.mhmd.digitalatlas;
+package com.compubase.mhmd.digitalatlas;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class AddfindingbyUsesr extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_addfindingby_usesr);
+        setContentView(R.layout.activity_main);
+
     }
 }

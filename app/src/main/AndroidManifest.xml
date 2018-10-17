@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.company.mhmd.digitalatlas">
+    package="com.compubase.mhmd.digitalatlas">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -26,24 +26,24 @@
         android:roundIcon="@drawable/img"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FirstActivity">
+        <activity android:name="com.compubase.mhmd.digitalatlas.FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Regestration" />
-        <activity android:name=".SignIn" />
-        <activity android:name=".ForgetPassword" />
-        <activity android:name=".AddFinding1" />
-        <activity android:name=".Add_Finding2ByAdmin" />
-        <activity android:name=".Admin_Notifications" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".AddPatient" />
-        <activity android:name=".AddfindigByAdmin" />
-        <activity android:name=".AddfindingbyUsesr" />
-        <activity android:name=".AdminMain"></activity>
+        <activity android:name="com.compubase.mhmd.digitalatlas.Regestration" />
+        <activity android:name="com.compubase.mhmd.digitalatlas.SignIn" />
+        <activity android:name="com.compubase.mhmd.digitalatlas.ForgetPassword" />
+        <activity android:name="com.compubase.mhmd.digitalatlas.AddFinding1" />
+        <activity android:name="com.compubase.mhmd.digitalatlas.Add_Finding2ByAdmin" />
+        <activity android:name="com.compubase.mhmd.digitalatlas.Admin_Notifications" />
+        <activity android:name="com.compubase.mhmd.digitalatlas.MainActivity" />
+        <activity android:name="com.compubase.mhmd.digitalatlas.AddPatient" />
+        <activity android:name="com.compubase.mhmd.digitalatlas.AddfindigByAdmin" />
+        <activity android:name="com.compubase.mhmd.digitalatlas.AddfindingbyUsesr" />
+        <activity android:name="com.compubase.mhmd.digitalatlas.AdminMain"></activity>
     </application>
 
 </manifest>

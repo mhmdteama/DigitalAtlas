@@ -2,6 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.company.mhmd.digitalatlas.PatientListAdmin"
+    tools:context="com.compubase.mhmd.digitalatlas.PatientListAdmin"
     android:background="#5c00e6">
 </FrameLayout>

@@ -1,4 +1,4 @@
-package com.company.mhmd.digitalatlas;
+package com.compubase.mhmd.digitalatlas;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -17,6 +17,7 @@ public class AdminMain extends AppCompatActivity {
         AdminFragment frag = new AdminFragment();
         final AddPatientFragment addPatientFragment = new AddPatientFragment();
         final PatientListAdmin patientListAdmin = new  PatientListAdmin();
+        final PatientNotification patientNotification = new PatientNotification();
         final NotificationAdmin notificationAdmin = new NotificationAdmin();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -50,6 +51,16 @@ public class AdminMain extends AppCompatActivity {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.cotainer, notificationAdmin);
+                fragmentTransaction.commit();
+            }
+        });
+        approve = findViewById(R.id.approve);
+        approve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.cotainer, patientNotification);
                 fragmentTransaction.commit();
             }
         });

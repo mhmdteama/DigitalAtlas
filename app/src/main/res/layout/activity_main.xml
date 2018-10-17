@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.company.mhmd.digitalatlas.MainActivity">
+    tools:context="com.compubase.mhmd.digitalatlas.MainActivity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/fragment2"
-        android:name="com.company.mhmd.digitalatlas.PatientListFragment"
+        android:name="com.compubase.mhmd.digitalatlas.PatientListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
