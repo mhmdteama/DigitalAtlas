@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.compubase.mhmd.digitalatlas.AddPatientFragment">
+    tools:context="com.compubase.mhmd.digitalatlas.AddFinfing1">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -71,7 +71,7 @@
             android:background="@drawable/redbutton"
             android:textSize="20dp"
             android:text="Next"
-            android:id="@+id/next"
+            android:id="@+id/nextToFinding2"
             android:textColor="#fff"
             />
     </RelativeLayout>

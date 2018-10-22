@@ -35,7 +35,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/cotainer"
+            android:id="@+id/cotaineradmin"
             android:layout_above="@+id/cardlayout"
             >
         </FrameLayout>
@@ -70,7 +70,7 @@
                             android:layout_gravity="center"
                             android:background="@drawable/add"
                             android:layout_weight="1"
-                            android:id="@+id/adds"
+                            android:id="@+id/addfinfingadmin"
                             android:scaleType="fitCenter"
                             android:layout_marginTop="5dp"
                             />
@@ -97,7 +97,7 @@
                             android:layout_weight="1"
                             android:scaleType="fitCenter"
                             android:layout_marginTop="5dp"
-                            android:id="@+id/lists"
+                            android:id="@+id/paierntlistadmin"
                             />
                         <TextView
                             android:layout_width="wrap_content"
@@ -147,7 +147,7 @@
                             android:layout_weight="1"
                             android:scaleType="fitCenter"
                             android:layout_marginTop="5dp"
-                            android:id="@+id/notific"
+                            android:id="@+id/notificAdmin"
                             />
                         <TextView
                             android:layout_width="wrap_content"

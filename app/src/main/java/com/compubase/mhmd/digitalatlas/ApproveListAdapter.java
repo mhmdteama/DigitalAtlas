@@ -12,42 +12,40 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class ApproveListAdapter extends RecyclerView.Adapter<ApproveListAdapter.ViewHolder> {
-    private ArrayList<ApproveList> approveList;
-    public ApproveListAdapter(ArrayList<ApproveList> applist, Context context ) {approveList = applist;}
-
-
-
+    ArrayList<ApproveList> approveList;
+    public ApproveListAdapter (ArrayList<ApproveList> list)
+    {
+        approveList = list;
+    }
     public class ViewHolder extends RecyclerView.ViewHolder {
-
-        Button approve ;
-        TextView user;
-
+        TextView uname;
+        Button apprive ;
+        String approved;
         public ViewHolder(View itemView) {
             super(itemView);
-
-            user = itemView.findViewById(R.id.usernamee);
-            approve = itemView.findViewById(R.id.approve);
+            uname = itemView.findViewById(R.id.usernameee);
         }
     }
 
     @NonNull
     @Override
-    public ApproveListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.approvelist,parent,false);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.approvelist, parent
+                ,false);
 
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ApproveListAdapter.ViewHolder holder, int position) {
-        //holder.itemView.setTe(approveList.get(position));
-        holder.user.setText(approveList.get(position).getUsername());
+       // holder.itemView.setTag(approveList.get(position));
+        holder.uname.setText(approveList.get(position).getUsername());
     }
-
 
     @Override
     public int getItemCount() {
-
         return approveList.size();
     }
 }
+
+

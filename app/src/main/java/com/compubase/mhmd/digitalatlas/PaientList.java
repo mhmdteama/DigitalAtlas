@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -25,45 +24,37 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+public class PaientList extends Fragment {
 
-public class PatientListFragment extends Fragment {
-    RecyclerView patientRecyclerView ;
-    RecyclerView.Adapter myadapter;
+    RecyclerView paientList ;
     RecyclerView.LayoutManager layoutManager;
-    View view;
-    ArrayList<ApproveList> approveLists;
-
-    String URL = "http://atlas.alosboiya.com.sa/atlas.asmx/select_all_pat_for_admin?";
-
+    ArrayList<Patient> patients;
+    String URL = "http://atlas.alosboiya.com.sa/atlas.asmx/select_pat_by_iduser?";
     RequestQueue requestQueue;
-
-    ApproveListAdapter adapter;
-
-    public PatientListFragment() {
+    RecyclerView.Adapter myAdapter;
+    View view;
+    public PaientList() {
+        // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_patient_list, container, false);
+        // Inflate the layout for this fragment
+       view = inflater.inflate(R.layout.fragment_paient_list, container, false);
         return view;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        patientRecyclerView = view.findViewById(R.id.approvelist);
-        patientRecyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this.getActivity());
-        patientRecyclerView.setLayoutManager(layoutManager);
-
-
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        paientList = view.findViewById(R.id.paientlists);
+        paientList.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this.getContext());
+        paientList.setLayoutManager(layoutManager);
         JSON_DATA_WEB_CALL();
     }
-
-
-
-
 
     public void JSON_DATA_WEB_CALL(){
 
@@ -103,20 +94,18 @@ public class PatientListFragment extends Fragment {
 
                 JSONObject childJSONObject = js.getJSONObject(i);
 
-                ApproveList GetDataAdapter2 = new ApproveList();
+                Patient GetDataAdapter2 = new Patient();
 
-                GetDataAdapter2.setUsername(childJSONObject.getString("name"));
-
-                GetDataAdapter2.setIsApproved(childJSONObject.getString("approval"));
-
-
-                approveLists.add(GetDataAdapter2);
+                GetDataAdapter2.setName(childJSONObject.getString("name"));
+                GetDataAdapter2.setId(childJSONObject.getString("id"));
+                GetDataAdapter2.setImgUrl(childJSONObject.getString("image"));
+                GetDataAdapter2.setUseremail(childJSONObject.getString("email"));
+                patients.add(GetDataAdapter2);
             }
 
-            adapter = new ApproveListAdapter(approveLists,getContext());
-            patientRecyclerView.setAdapter(adapter);
-
-            adapter.notifyDataSetChanged();
+            myAdapter = new PatientAdapter(getContext(),patients);
+            paientList.setAdapter(myAdapter);
+            //myAdapter.notifyDataSetChanged();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -130,7 +119,5 @@ public class PatientListFragment extends Fragment {
     private void showMessage() {
         Toast.makeText(getContext(), "No Connection", Toast.LENGTH_LONG).show();
     }
-
-
 
 }

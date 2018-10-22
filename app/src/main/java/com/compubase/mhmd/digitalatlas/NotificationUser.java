@@ -1,11 +1,9 @@
 package com.compubase.mhmd.digitalatlas;
 
-
-
-public class NotificListUser {
-    private String sender;
+public class NotificationUser {
+    private String sender ;
     private String title;
-    private  String body;
+    private String body;
 
     public String getSender() {
         return sender;

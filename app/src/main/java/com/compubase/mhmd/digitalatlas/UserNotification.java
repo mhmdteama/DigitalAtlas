@@ -24,36 +24,38 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-
-public class PatientNotification extends Fragment {
-    RecyclerView noticRecycler ;
-    RecyclerView.Adapter myadapter;
-    RecyclerView.LayoutManager layoutManager;
+public class UserNotification extends Fragment {
     View view;
-    ArrayList<NotificListUser> notificListUsers;
+    RecyclerView notificationList ;
+    RecyclerView.LayoutManager layoutManager;
+    ArrayList<NotificationUser> notifications = new ArrayList<NotificationUser>();
     String URL = "http://atlas.alosboiya.com.sa/atlas.asmx/select_all_note?";
     RequestQueue requestQueue;
-    usserNotificAdapter adapter;
-    public PatientNotification() {
+    RecyclerView.Adapter myAdapter;
+
+    public UserNotification() {
+        // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-         view = inflater.inflate(R.layout.fragment_patient_notification, container, false);
+        view =  inflater.inflate(R.layout.fragment_user_notification, container, false);
         return view;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        noticRecycler = view.findViewById(R.id.notificlist);
-        noticRecycler.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this.getActivity());
-        noticRecycler.setLayoutManager(layoutManager);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        notificationList = view.findViewById(R.id.notificationlists);
+        notificationList.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getContext());
+        notificationList.setLayoutManager(layoutManager);
+
         JSON_DATA_WEB_CALL();
     }
+
     public void JSON_DATA_WEB_CALL(){
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET,URL,
@@ -92,20 +94,17 @@ public class PatientNotification extends Fragment {
 
                 JSONObject childJSONObject = js.getJSONObject(i);
 
-                NotificListUser GetDataAdapter2 = new NotificListUser();
+                NotificationUser GetDataAdapter2 = new NotificationUser();
+
                 GetDataAdapter2.setSender(childJSONObject.getString("sender"));
                 GetDataAdapter2.setTitle(childJSONObject.getString("head"));
                 GetDataAdapter2.setBody(childJSONObject.getString("body"));
-
-
-
-                notificListUsers.add(GetDataAdapter2);
+                notifications.add(GetDataAdapter2);
             }
+            myAdapter = new NotificationUserAdapter( notifications);
+            notificationList.setAdapter(myAdapter);
 
-            adapter = new usserNotificAdapter(getContext() , notificListUsers);
-            noticRecycler.setAdapter(adapter);
-
-            adapter.notifyDataSetChanged();
+            //adapter.notifyDataSetChanged();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -119,6 +118,5 @@ public class PatientNotification extends Fragment {
     private void showMessage() {
         Toast.makeText(getContext(), "No Connection", Toast.LENGTH_LONG).show();
     }
-
 
 }

@@ -38,13 +38,13 @@
             android:layout_height="wrap_content"
             android:textColor="#3399ff"
             android:text="Title : "
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:background="@drawable/rounded_button2"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#3399ff"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:background="@drawable/rounded_button2"
             android:id="@+id/titile"/>
     </LinearLayout>
@@ -59,7 +59,7 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:textColor="#3399ff"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:text="Body"
             android:gravity="center"
             android:background="@drawable/rounded_button2"

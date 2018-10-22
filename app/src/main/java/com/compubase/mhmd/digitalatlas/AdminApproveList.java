@@ -24,47 +24,46 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-
-public class PatientListAdmin extends Fragment {
-    RecyclerView paientList ;
-    RecyclerView.Adapter myadapter;
+public class AdminApproveList extends Fragment {
+    RecyclerView recyclerView;
+    RecyclerView.Adapter myAdapter;
     RecyclerView.LayoutManager layoutManager;
+    ArrayList<ApproveList> listApproved = new ArrayList<ApproveList>();
     View view;
-    ArrayList<Patient> patients;
-    String URL = "http://atlas.alosboiya.com.sa/atlas.asmx/select_all_pat_for_admin?";
     RequestQueue requestQueue;
-    PatientAdapter adapter;
-    public PatientListAdmin() {
+    String URL = "http://atlas.alosboiya.com.sa//atlas.asmx/select_all_user_for_admin?";
+
+
+    public AdminApproveList() {
+        // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       view =  inflater.inflate(R.layout.fragment_patient_list_admin, container, false);
+         view = inflater.inflate(R.layout.fragment_admin_approve_list, container, false);
         return view;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        paientList = view.findViewById(R.id.adminpaientlist);
-        paientList.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this.getActivity());
-        paientList.setLayoutManager(layoutManager);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        recyclerView =view.findViewById(R.id.approvedlist);
+        recyclerView.setHasFixedSize(true);
+        layoutManager= new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
         JSON_DATA_WEB_CALL();
-
     }
+
+
     public void JSON_DATA_WEB_CALL(){
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,URL,
-
+        StringRequest stringRequest;
+        stringRequest = new StringRequest(Request.Method.GET,URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-
-
                         JSON_PARSE_DATA_AFTER_WEBCALL(response);
                     }
                 },
@@ -93,24 +92,14 @@ public class PatientListAdmin extends Fragment {
 
                 JSONObject childJSONObject = js.getJSONObject(i);
 
-                Patient GetDataAdapter2 = new Patient();
+                ApproveList GetDataAdapter2 = new ApproveList();
 
-                GetDataAdapter2.setName(childJSONObject.getString("head"));
-                GetDataAdapter2.setUserId(childJSONObject.getString("body"));
-                GetDataAdapter2.setImage(childJSONObject.getString("body"));
-                GetDataAdapter2.setEmail(childJSONObject.getString("body"));
-
-
-
-
-
-                patients.add(GetDataAdapter2);
+                GetDataAdapter2.setUsername(childJSONObject.getString("username"));
+                listApproved.add(GetDataAdapter2);
             }
-
-            adapter = new PatientAdapter(getContext() , patients);
-            paientList.setAdapter(adapter);
-
-            adapter.notifyDataSetChanged();
+            myAdapter = new ApproveListAdapter(listApproved );
+            recyclerView.setAdapter(myAdapter);
+            //myAdapter.notifyDataSetChanged();
 
         } catch (JSONException e) {
             e.printStackTrace();

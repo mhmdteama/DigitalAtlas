@@ -36,13 +36,7 @@
         <activity android:name="com.compubase.mhmd.digitalatlas.Regestration" />
         <activity android:name="com.compubase.mhmd.digitalatlas.SignIn" />
         <activity android:name="com.compubase.mhmd.digitalatlas.ForgetPassword" />
-        <activity android:name="com.compubase.mhmd.digitalatlas.AddFinding1" />
-        <activity android:name="com.compubase.mhmd.digitalatlas.Add_Finding2ByAdmin" />
-        <activity android:name="com.compubase.mhmd.digitalatlas.Admin_Notifications" />
         <activity android:name="com.compubase.mhmd.digitalatlas.MainActivity" />
-        <activity android:name="com.compubase.mhmd.digitalatlas.AddPatient" />
-        <activity android:name="com.compubase.mhmd.digitalatlas.AddfindigByAdmin" />
-        <activity android:name="com.compubase.mhmd.digitalatlas.AddfindingbyUsesr" />
         <activity android:name="com.compubase.mhmd.digitalatlas.AdminMain"></activity>
     </application>
 

@@ -1,54 +1,85 @@
 package com.compubase.mhmd.digitalatlas;
+
+
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.app.Fragment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
 import java.io.IOException;
 import java.util.UUID;
+
+import static android.app.Activity.RESULT_OK;
 import static android.media.MediaRecorder.VideoSource.CAMERA;
 
 
-public class AddFinding1 extends AppCompatActivity {
-//     File destination ;
-     final int PICK_IMAGE_REQUEST = 71;
-     //InputStream inputStreamImg;
-     Uri imgPath ;
+public class AddFinfing1 extends Fragment {
+    //     File destination ;
+    final int PICK_IMAGE_REQUEST = 71;
+    //InputStream inputStreamImg;
+    Uri imgPath ;
     ImageView pikeimage;
-    FirebaseStorage storage;
+   // FirebaseStorage storage;
     StorageReference storageReference;
     Button next;
+    View view ;
     //private static final Object IMAGE_DIRECTORY = 0 ;
 
+
+
+    public AddFinfing1() {
+        // Required empty public constructor
+    }
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_finding1);
-        pikeimage = findViewById(R.id.addpic);
-        storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference();
-        next = findViewById(R.id.next);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+              view =   inflater.inflate(R.layout.fragment_add_finfing1, container, false);
+        return view;
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        final Addfinding2 addfinding2 = new Addfinding2();
+        pikeimage = view.findViewById(R.id.addpic);
+        //storage = FirebaseStorage.getInstance();
+       // storageReference = storage.getReference();
+        next =view.findViewById(R.id.nextToFinding2);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadImage();
-                Intent intent = new Intent( AddFinding1.this,Add_Finding2ByAdmin.class);
-                startActivity(intent);
+               // uploadImage();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.usercontiner,addfinding2 );
+                fragmentTransaction.commit();
+
             }
         });
         pikeimage.setOnClickListener(new View.OnClickListener() {
@@ -57,13 +88,14 @@ public class AddFinding1 extends AppCompatActivity {
                 showPicturDialog();
             }
         });
+
     }
     public  void  showPicturDialog()
     {
-        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
+        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(getContext());
         pictureDialog.setTitle("Select Action");
         String[] pictureDlialogItem={"Select From Gallery" ,
-        "Capture From Camera"};
+                "Capture From Camera"};
         pictureDialog.setItems(pictureDlialogItem, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -88,14 +120,14 @@ public class AddFinding1 extends AppCompatActivity {
         startActivityForResult(intent,CAMERA);
     }
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if((requestCode == PICK_IMAGE_REQUEST) && (resultCode == RESULT_OK)
                 && (data != null) && (data.getData() != null))
         {
             imgPath = data.getData();
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imgPath);
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),imgPath);
                 pikeimage.setImageBitmap(bitmap);
             }
             catch (IOException e)
@@ -105,38 +137,39 @@ public class AddFinding1 extends AppCompatActivity {
         }
     }
 
+/*
     private void uploadImage() {
 
-        if(imgPath != null)
-        {
-            final ProgressDialog progressDialog = new ProgressDialog(this);
+        if (imgPath != null) {
+            final ProgressDialog progressDialog = new ProgressDialog(getContext());
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
             ref.putFile(imgPath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Toast.makeText(AddFinding1.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(AddFinding1.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                            progressDialog.setMessage("Uploaded " + (int) progress + "%");
                         }
                     });
         }
+*/
+
     }
-}

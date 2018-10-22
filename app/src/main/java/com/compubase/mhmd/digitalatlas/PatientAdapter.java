@@ -12,47 +12,49 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHolder> {
-    ArrayList<Patient> people;
-    public PatientAdapter(Context context , ArrayList<Patient> list)
-    {
+    ArrayList<Patient> ourPatients;
 
-        people = list;
+    public PatientAdapter(Context context, ArrayList<Patient> list) {
+
+        ourPatients = list;
     }
-    public class ViewHolder extends RecyclerView.ViewHolder
-    {
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView userimg;
-        TextView name , id , email;
+        TextView name, id, email;
+
         public ViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
-            id = itemView.findViewById(R.id.id);
-            email = itemView.findViewById(R.id.emails);
+            id = itemView.findViewById(R.id.userid);
+            email = itemView.findViewById(R.id.useremail);
             userimg = itemView.findViewById(R.id.userimg);
-
-
         }
+
+
     }
+
     @NonNull
     @Override
-    public PatientAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem , parent
-        ,false);
-        return new ViewHolder(v);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.patientlists, parent
+                ,false);
+
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PatientAdapter.ViewHolder viewHolder, int i) {
-        viewHolder.itemView.setTag(people.get(i));
-        viewHolder.name.setText(people.get(i).getName());
-        viewHolder.id.setText(people.get(i).getUserId());
-        viewHolder.email.setText(people.get(i).getEmail());
-
-
+    public void onBindViewHolder(@NonNull PatientAdapter.ViewHolder holder, int position) {
+        holder.name.setText(ourPatients.get(position).getName());
+        holder.userimg.setImageResource(Integer.parseInt(ourPatients.get(position).getImgUrl()));
+        holder.id.setText(ourPatients.get(position).getId());
+        holder.email.setText(ourPatients.get(position).getUseremail());
 
     }
 
     @Override
     public int getItemCount() {
-        return people.size();
+        return ourPatients.size();
     }
+
 }

@@ -2,8 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.compubase.mhmd.digitalatlas.NotificationAdmin"
+    tools:context="com.compubase.mhmd.digitalatlas.AdminNotification"
     android:orientation="vertical">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -63,4 +64,5 @@
         android:textColor="#fff"
         android:textSize="30dp"
         android:id="@+id/send"/>
+
 </LinearLayout>

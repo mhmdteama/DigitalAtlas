@@ -1,9 +1,13 @@
 package com.compubase.mhmd.digitalatlas;
 
+
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.app.Fragment;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +23,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class AddPatient extends AppCompatActivity {
+public class Addfinding3 extends Fragment {
+    View view;
     private static final String[] ageOf = { "Newborn" , "Child" , "Adolescence" , "Old Agy"};
     private static final String[] genderType = {"Male" , "Female" };
     private static final String[] sysType = {"Cardiology" , "Respirology" , "Dermatolgy" , "endocrinology" , "General surgery", "Cardit"
@@ -30,22 +35,32 @@ public class AddPatient extends AppCompatActivity {
     Button next;
     Spinner age , gender , system;
 
+    public Addfinding3() {
+    }
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_patient);
-        supervision = findViewById(R.id.supervision);
-        finding = findViewById(R.id.finding);
-        rq1 = findViewById(R.id.required1);
-        rq2 = findViewById(R.id.required2);
-        rq3 = findViewById(R.id.required3);
-        supervision = findViewById(R.id.supervision);
-        rq4 = findViewById(R.id.required4);
-        op1 = findViewById(R.id.optional1);
-        op2 = findViewById(R.id.optional2);
-        senario = findViewById(R.id.senario);
-        next = findViewById(R.id.next);
-        abnormal = findViewById(R.id.abnormal);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        view = inflater.inflate(R.layout.fragment_addfinding3, container, false);
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        finding =view.findViewById(R.id.finding);
+        rq1 = view.findViewById(R.id.required1);
+        rq2 = view.findViewById(R.id.required2);
+        rq3 = view.findViewById(R.id.required3);
+        supervision = view.findViewById(R.id.supervision);
+        rq4 = view.findViewById(R.id.required4);
+        op1 = view.findViewById(R.id.optional1);
+        op2 = view.findViewById(R.id.optional2);
+        senario = view.findViewById(R.id.senario);
+        next = view.findViewById(R.id.next);
+        abnormal = view.findViewById(R.id.abnormal);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,25 +72,27 @@ public class AddPatient extends AppCompatActivity {
         ageSpiner();
         systemSpinner();
         genderSpinner();
+
+
     }
     public void ageSpiner()
     {
-        age =findViewById(R.id.age);
-        ArrayAdapter<String> ageAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, ageOf);
+        age =view.findViewById(R.id.age);
+        ArrayAdapter<String> ageAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item, ageOf);
         ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         age.setAdapter(ageAdapter);
     }
     public void genderSpinner()
     {
-        gender =findViewById(R.id.gender);
-        ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, genderType);
+        gender =view.findViewById(R.id.gender);
+        ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item, genderType);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gender.setAdapter(genderAdapter);
     }
     public void systemSpinner()
     {
-        system =findViewById(R.id.system);
-        ArrayAdapter<String> sysAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, sysType);
+        system =view.findViewById(R.id.system);
+        ArrayAdapter<String> sysAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item, sysType);
         sysAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         system.setAdapter(sysAdapter);
 
@@ -95,7 +112,7 @@ public class AddPatient extends AppCompatActivity {
                             showMessage(" Pleas Complete Information ");
 
                         }else {
-                            Intent intent = new Intent(AddPatient.this,MainActivity.class);
+                            Intent intent = new Intent(getContext(),MainActivity.class);
                             startActivity(intent);
                             // tinyDB.putString("userID",response);
                         }
@@ -136,11 +153,12 @@ public class AddPatient extends AppCompatActivity {
 
         };
 
-        RequestHandler.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
+        RequestHandler.getInstance(getContext()).addToRequestQueue(stringRequest);
     }
 
     private void showMessage(String _s) {
-        Toast.makeText(getApplicationContext(), _s, Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), _s, Toast.LENGTH_LONG).show();
     }
+
 
 }

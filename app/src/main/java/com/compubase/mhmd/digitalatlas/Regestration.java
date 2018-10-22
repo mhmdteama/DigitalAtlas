@@ -53,7 +53,7 @@ public class Regestration extends AppCompatActivity {
                         showMessage(response);
                         if(Objects.equals(response, "True")){
                             showMessage("Registration  Done Successful Congratulations ");
-                            Intent intent = new Intent(Regestration.this,AddPatient.class);
+                            Intent intent = new Intent(Regestration.this,MainActivity.class);
                             startActivity(intent);
                         }else {
                             showMessage("Failed pleas Try Again ");

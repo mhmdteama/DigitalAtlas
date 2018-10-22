@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Approve Users"
+                android:text="Main User "
                 android:textAlignment="center"
                 android:textColor="#ffffff"
                 android:textSize="30sp" />
@@ -29,13 +29,14 @@
     </android.support.v7.widget.Toolbar>
 
 
-    <fragment
-        android:id="@+id/fragment2"
-        android:name="com.compubase.mhmd.digitalatlas.PatientListFragment"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        tools:layout="@layout/fragment_patient_list" />
+        android:id="@+id/usercontiner">
+    </FrameLayout>
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -48,7 +49,8 @@
                 app:cardBackgroundColor="#fff"
                 app:cardElevation="15dp"
                 app:cardCornerRadius="1.5dp"
-                android:layout_alignParentBottom="true">
+                android:layout_alignParentBottom="true"
+                >
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -69,6 +71,7 @@
                             android:layout_weight="1"
                             android:scaleType="fitCenter"
                             android:layout_marginTop="5dp"
+                            android:id="@+id/addfinfing"
                             />
                         <TextView
                             android:layout_width="wrap_content"
@@ -93,6 +96,7 @@
                             android:layout_weight="1"
                             android:scaleType="fitCenter"
                             android:layout_marginTop="5dp"
+                            android:id="@+id/plistbutton"
                             />
                         <TextView
                             android:layout_width="wrap_content"
@@ -117,6 +121,7 @@
                             android:layout_weight="1"
                             android:scaleType="fitCenter"
                             android:layout_marginTop="5dp"
+                            android:id="@+id/usernotific"
                             />
                         <TextView
                             android:layout_width="wrap_content"

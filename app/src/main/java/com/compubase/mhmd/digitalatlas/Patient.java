@@ -1,12 +1,11 @@
 package com.compubase.mhmd.digitalatlas;
+
+
 public class Patient {
-    private String name;
-    private String userId;
-    private String email;
-    private String image;
-
-
-
+    private  String name ;
+    private String id;
+    private String useremail;
+    private String imgUrl;
 
     public String getName() {
         return name;
@@ -16,27 +15,27 @@ public class Patient {
         this.name = name;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUseremail() {
+        return useremail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUseremail(String useremail) {
+        this.useremail = useremail;
     }
 
-    public String getImage() {
-        return image;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

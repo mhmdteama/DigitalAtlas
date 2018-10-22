@@ -18,7 +18,7 @@
               android:layout_height="50dp"
               android:textSize="25dp"
               android:gravity="center"
-              android:id="@+id/usernamee"
+              android:id="@+id/usernameee"
               android:textColor="#000"/>
           <Button
               android:layout_width="100dp"

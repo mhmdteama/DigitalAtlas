@@ -8,60 +8,71 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class AdminMain extends AppCompatActivity {
-    ImageButton add , patientlist , approve , notific;
+    ImageButton add, patientlisst, approve, notific;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_patient_list_admin);
-        AdminFragment frag = new AdminFragment();
-        final AddPatientFragment addPatientFragment = new AddPatientFragment();
-        final PatientListAdmin patientListAdmin = new  PatientListAdmin();
-        final PatientNotification patientNotification = new PatientNotification();
-        final NotificationAdmin notificationAdmin = new NotificationAdmin();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-       fragmentTransaction.add(R.id.cotainer , frag);
-        fragmentTransaction.commit();
-        add = findViewById(R.id.adds);
+        setContentView(R.layout.activity_admin_main);
+        final AddFinfing1 addFinfing1 = new AddFinfing1();
+        final AdminApproveList adminApproveList = new AdminApproveList();
+        final AdminNotification adminNotification = new AdminNotification();
+        final PaientList paientList = new PaientList();
+        approve = findViewById(R.id.approve);
+        //final AddPatientFragment addPatientFragment = new AddPatientFragment();
+        //final PatientListAdmin patientListAdmin = new  PatientListAdmin();
+        // PatientNotification patientNotification = new PatientNotification();
+        // final NotificationAdmin notificationAdmin = new NotificationAdmin();
+        //FragmentManager fragmentManager = getFragmentManager();
+        // FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        //fragmentTransaction.add(R.id.cotainer , frag);
+        //fragmentTransaction.commit();
+        add = findViewById(R.id.addfinfingadmin);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.cotainer, addPatientFragment);
+                fragmentTransaction.replace(R.id.cotaineradmin,addFinfing1 );
                 fragmentTransaction.commit();
             }
         });
-        patientlist = findViewById(R.id.lists);
-        patientlist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.cotainer, patientListAdmin);
-                fragmentTransaction.commit();
-            }
-        });
-        notific =findViewById(R.id.notific);
-        notific.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.cotainer, notificationAdmin);
-                fragmentTransaction.commit();
-            }
-        });
-        approve = findViewById(R.id.approve);
         approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.cotainer, patientNotification);
+                fragmentTransaction.replace(R.id.cotaineradmin,adminApproveList );
                 fragmentTransaction.commit();
+            }
+        });
+        notific = findViewById(R.id.notificAdmin);
+        notific.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.cotaineradmin,adminNotification );
+                fragmentTransaction.commit();
+
+            }
+        });
+        patientlisst = findViewById(R.id.paierntlistadmin);
+        patientlisst .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.cotaineradmin,paientList );
+                fragmentTransaction.commit();
+
             }
         });
     }
 }
+
+
+
+
+
+
