@@ -19,7 +19,7 @@ public class FirstActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent intent = new Intent(FirstActivity.this ,MainActivity.class);
+                Intent intent = new Intent(FirstActivity.this ,SignIn.class);
                 startActivity(intent);
                 finish();
             }

@@ -95,6 +95,7 @@ public class AdminApproveList extends Fragment {
                 ApproveList GetDataAdapter2 = new ApproveList();
 
                 GetDataAdapter2.setUsername(childJSONObject.getString("username"));
+                GetDataAdapter2.setIsapproved(childJSONObject.getString("approval"));
                 listApproved.add(GetDataAdapter2);
             }
             myAdapter = new ApproveListAdapter(listApproved );

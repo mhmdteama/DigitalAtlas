@@ -26,7 +26,7 @@ public class SignIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        new TinyDB(getApplicationContext());
+        tinyDB = new TinyDB(getApplicationContext());
         username = findViewById(R.id.username);
         pass = findViewById(R.id.password);
         siginIn = findViewById(R.id.signin);
@@ -70,10 +70,15 @@ public class SignIn extends AppCompatActivity {
 
                             showMessage("Invalid user name or password ");
 
-                        }else {
+                        }else if (response.contains("admin"))
+                        {
+                            Intent adminintent = new Intent(SignIn.this,AdminMain.class);
+                            startActivity(adminintent);
+                        }else
+                        {
                             Intent intent = new Intent(SignIn.this,MainActivity.class);
                             startActivity(intent);
-                           // tinyDB.putString("userID",response);
+                            tinyDB.putString("userID",response);
                         }
                     }
                 }, new Response.ErrorListener() {
