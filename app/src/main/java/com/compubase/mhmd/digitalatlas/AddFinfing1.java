@@ -1,15 +1,13 @@
 package com.compubase.mhmd.digitalatlas;
 
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -36,16 +35,17 @@ import static android.media.MediaRecorder.VideoSource.CAMERA;
 
 
 public class AddFinfing1 extends Fragment {
-    //     File destination ;
+
     final int PICK_IMAGE_REQUEST = 71;
-    //InputStream inputStreamImg;
-    Uri imgPath ;
     ImageView pikeimage;
-   // FirebaseStorage storage;
-    StorageReference storageReference;
     Button next;
     View view ;
-    //private static final Object IMAGE_DIRECTORY = 0 ;
+    String imgUrl;
+
+    FirebaseStorage storage;
+    StorageReference storageReference;
+
+    Uri filePath;
 
 
 
@@ -55,10 +55,9 @@ public class AddFinfing1 extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-              view =   inflater.inflate(R.layout.fragment_add_finfing1, container, false);
+        view =   inflater.inflate(R.layout.fragment_add_finfing1, container, false);
         return view;
 
     }
@@ -66,19 +65,20 @@ public class AddFinfing1 extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        final Addfinding2 addfinding2 = new Addfinding2();
         pikeimage = view.findViewById(R.id.addpic);
-        //storage = FirebaseStorage.getInstance();
-       // storageReference = storage.getReference();
+
+        FirebaseApp.initializeApp(getContext());
+
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
         next =view.findViewById(R.id.nextToFinding2);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // uploadImage();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.usercontiner,addfinding2 );
-                fragmentTransaction.commit();
+                Intent intent = new Intent(getActivity(),Sample1Activity.class);
+                intent.putExtra("imageURL",imgUrl);
+                startActivity(intent);
 
             }
         });
@@ -115,20 +115,34 @@ public class AddFinfing1 extends Fragment {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent,71);
     }
+
     private void takePhotoFromCamera() {
-        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent,CAMERA);
+
+        //From Camera
+
+        Intent pictureIntent = new Intent(
+                MediaStore.ACTION_IMAGE_CAPTURE
+        );
+        if(pictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivityForResult(pictureIntent,
+                    PICK_IMAGE_REQUEST);
+        }
+
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if((requestCode == PICK_IMAGE_REQUEST) && (resultCode == RESULT_OK)
-                && (data != null) && (data.getData() != null))
+        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null )
         {
-            imgPath = data.getData();
+            filePath = data.getData();
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),imgPath);
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), filePath);
                 pikeimage.setImageBitmap(bitmap);
+
+                uploadImage();
+
             }
             catch (IOException e)
             {
@@ -137,39 +151,51 @@ public class AddFinfing1 extends Fragment {
         }
     }
 
-/*
+
+
+
     private void uploadImage() {
 
-        if (imgPath != null) {
+        if(filePath != null)
+        {
             final ProgressDialog progressDialog = new ProgressDialog(getContext());
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
-            ref.putFile(imgPath)
+            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            ref.putFile(filePath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
                             Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+                            Uri downloadUrl = taskSnapshot.getUploadSessionUri(); //getDownloadUrl not found
+                            assert downloadUrl != null;
+                            imgUrl = downloadUrl.toString();
+                            showMessage(imgUrl);
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Uploaded " + (int) progress + "%");
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
                         }
                     });
         }
-*/
-
     }
+
+    private void showMessage(String _s) {
+        Toast.makeText(getActivity().getApplicationContext(), _s, Toast.LENGTH_LONG).show();
+    }
+
+}

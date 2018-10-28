@@ -1,8 +1,8 @@
 package com.compubase.mhmd.digitalatlas;
 
 
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,16 +23,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PaientList extends Fragment {
 
     RecyclerView paientList ;
     RecyclerView.LayoutManager layoutManager;
-    ArrayList<Patient> patients;
-    String URL = "http://atlas.alosboiya.com.sa/atlas.asmx/select_pat_by_iduser?";
+    ArrayList<Patient> patients = new ArrayList<>();
+    String URL,type;
     RequestQueue requestQueue;
-    RecyclerView.Adapter myAdapter;
+    PatientAdapter myAdapter;
     View view;
+
+
+    TinyDB tinyDB;
+
     public PaientList() {
         // Required empty public constructor
     }
@@ -42,7 +48,7 @@ public class PaientList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       view = inflater.inflate(R.layout.fragment_paient_list, container, false);
+        view = inflater.inflate(R.layout.fragment_paient_list, container, false);
         return view;
     }
 
@@ -53,36 +59,59 @@ public class PaientList extends Fragment {
         paientList.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this.getContext());
         paientList.setLayoutManager(layoutManager);
+
+        tinyDB = new TinyDB(getContext());
+
+        type = tinyDB.getString("type");
+
         JSON_DATA_WEB_CALL();
     }
 
     public void JSON_DATA_WEB_CALL(){
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,URL,
+        if(type.equals("admin"))
+        {
+            URL = "http://atlas.alosboiya.com.sa//atlas.asmx//select_all_pat_for_admin";
+        }else
+        {
+            URL = "http://atlas.alosboiya.com.sa//atlas.asmx/select_pat_by_iduser?iduser="+tinyDB.getString("userID");
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
 
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
-
-
                         JSON_PARSE_DATA_AFTER_WEBCALL(response);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                        showMessage();
-
 
                     }
-                }
-        );
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                showMessage();
+
+            }
+
+        }) {
+
+
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<>();
+                params.put("iduser", tinyDB.getString("userID"));
+                return params;
+            }
+
+        };
 
         requestQueue = Volley.newRequestQueue(getContext());
 
         requestQueue.add(stringRequest);
+
+
+
     }
 
     public void JSON_PARSE_DATA_AFTER_WEBCALL(String Jobj){

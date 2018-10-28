@@ -74,11 +74,15 @@ public class SignIn extends AppCompatActivity {
                         {
                             Intent adminintent = new Intent(SignIn.this,AdminMain.class);
                             startActivity(adminintent);
+                            tinyDB.putString("type","http://atlas.alosboiya.com.sa//atlas.asmx//select_all_pat_for_admin");
+                            tinyDB.putString("type","admin");
                         }else
                         {
                             Intent intent = new Intent(SignIn.this,MainActivity.class);
                             startActivity(intent);
                             tinyDB.putString("userID",response);
+                            tinyDB.putString("link","http://atlas.alosboiya.com.sa//atlas.asmx/select_pat_by_iduser");
+                            tinyDB.putString("type","user");
                         }
                     }
                 }, new Response.ErrorListener() {

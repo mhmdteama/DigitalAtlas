@@ -42,7 +42,7 @@ public class AdminApproveList extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-         view = inflater.inflate(R.layout.fragment_admin_approve_list, container, false);
+        view = inflater.inflate(R.layout.fragment_admin_approve_list, container, false);
         return view;
     }
 
@@ -94,13 +94,14 @@ public class AdminApproveList extends Fragment {
 
                 ApproveList GetDataAdapter2 = new ApproveList();
 
+                GetDataAdapter2.setId(childJSONObject.getString("id"));
                 GetDataAdapter2.setUsername(childJSONObject.getString("username"));
                 GetDataAdapter2.setIsapproved(childJSONObject.getString("approval"));
                 listApproved.add(GetDataAdapter2);
             }
-            myAdapter = new ApproveListAdapter(listApproved );
+            myAdapter = new ApproveListAdapter(listApproved);
             recyclerView.setAdapter(myAdapter);
-            //myAdapter.notifyDataSetChanged();
+            myAdapter.notifyDataSetChanged();
 
         } catch (JSONException e) {
             e.printStackTrace();

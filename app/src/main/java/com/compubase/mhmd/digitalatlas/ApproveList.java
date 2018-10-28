@@ -1,6 +1,18 @@
 package com.compubase.mhmd.digitalatlas;
 public class ApproveList {
+
+    private String id;
     private String username;
+    private String isapproved;
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getIsapproved() {
         return isapproved;
@@ -9,8 +21,6 @@ public class ApproveList {
     public void setIsapproved(String isapproved) {
         this.isapproved = isapproved;
     }
-
-    private String isapproved;
 
 
 

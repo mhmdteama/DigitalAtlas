@@ -1,8 +1,8 @@
 package com.compubase.mhmd.digitalatlas;
 
 
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,15 +23,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserNotification extends Fragment {
+
     View view;
     RecyclerView notificationList ;
-    RecyclerView.LayoutManager layoutManager;
-    ArrayList<NotificationUser> notifications = new ArrayList<NotificationUser>();
+    ArrayList<NotificationUser> notifications = new ArrayList<>();
     String URL = "http://atlas.alosboiya.com.sa/atlas.asmx/select_all_note?";
     RequestQueue requestQueue;
-    RecyclerView.Adapter myAdapter;
+    NotificationUserAdapter myAdapter;
+
+
 
     public UserNotification() {
         // Required empty public constructor
@@ -48,9 +51,12 @@ public class UserNotification extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         notificationList = view.findViewById(R.id.notificationlists);
+
         notificationList.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getContext());
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         notificationList.setLayoutManager(layoutManager);
 
         JSON_DATA_WEB_CALL();
@@ -99,12 +105,13 @@ public class UserNotification extends Fragment {
                 GetDataAdapter2.setSender(childJSONObject.getString("sender"));
                 GetDataAdapter2.setTitle(childJSONObject.getString("head"));
                 GetDataAdapter2.setBody(childJSONObject.getString("body"));
+
                 notifications.add(GetDataAdapter2);
             }
             myAdapter = new NotificationUserAdapter( notifications);
             notificationList.setAdapter(myAdapter);
 
-            //adapter.notifyDataSetChanged();
+            myAdapter.notifyDataSetChanged();
 
         } catch (JSONException e) {
             e.printStackTrace();

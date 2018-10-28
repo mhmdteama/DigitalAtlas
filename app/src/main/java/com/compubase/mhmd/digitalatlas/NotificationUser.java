@@ -29,4 +29,3 @@ public class NotificationUser {
         this.body = body;
     }
 }
-

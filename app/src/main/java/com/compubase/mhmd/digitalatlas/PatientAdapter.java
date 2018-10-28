@@ -46,7 +46,7 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull PatientAdapter.ViewHolder holder, int position) {
         holder.name.setText(ourPatients.get(position).getName());
-        holder.userimg.setImageResource(Integer.parseInt(ourPatients.get(position).getImgUrl()));
+        // holder.userimg.setImageResource(Integer.parseInt(ourPatients.get(position).getImgUrl()));
         holder.id.setText(ourPatients.get(position).getId());
         holder.email.setText(ourPatients.get(position).getUseremail());
 
