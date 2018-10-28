@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "1014139933297",
-    "firebase_url": "https://digitalatlas-636da.firebaseio.com",
-    "project_id": "digitalatlas-636da",
-    "storage_bucket": "digitalatlas-636da.appspot.com"
+    "project_number": "146021688634",
+    "firebase_url": "https://digital-atlas.firebaseio.com",
+    "project_id": "digital-atlas",
+    "storage_bucket": "digital-atlas.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1014139933297:android:8cf2e35c1d52396b",
+        "mobilesdk_app_id": "1:146021688634:android:1a1f87f50a3114e6",
         "android_client_info": {
           "package_name": "com.compubase.mhmd.digitalatlas"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1014139933297-gmgvi8da38pufmdhj5fkb17tpu6p2u7s.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.compubase.mhmd.digitalatlas",
-            "certificate_hash": "c19d301fa3debb8b98ec317dc6623ff04db50fbb"
-          }
-        },
-        {
-          "client_id": "1014139933297-k5f1r5inbrhr2o1360195utugp7osrf8.apps.googleusercontent.com",
+          "client_id": "146021688634-a0cepkdqslgad25b5jn9uu01lq0ukl49.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAH2VYLowrLRj9nGi41RV5zKQo3xqMDkDo"
+          "current_key": "AIzaSyC_No0bMPLXyyEnjqFeBNQcNfczOYpz0FQ"
         }
       ],
       "services": {
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1014139933297-k5f1r5inbrhr2o1360195utugp7osrf8.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

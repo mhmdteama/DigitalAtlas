@@ -26,18 +26,21 @@
         android:roundIcon="@drawable/img"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.compubase.mhmd.digitalatlas.FirstActivity">
+        <activity android:name=".FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.compubase.mhmd.digitalatlas.Regestration" />
-        <activity android:name="com.compubase.mhmd.digitalatlas.SignIn" />
-        <activity android:name="com.compubase.mhmd.digitalatlas.ForgetPassword" />
-        <activity android:name="com.compubase.mhmd.digitalatlas.MainActivity" />
-        <activity android:name="com.compubase.mhmd.digitalatlas.AdminMain"></activity>
+        <activity android:name=".Regestration" />
+        <activity android:name=".SignIn" />
+        <activity android:name=".ForgetPassword" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Sample2Activity" />
+        <activity android:name=".Sample1Activity" />
+        <activity android:name=".AdminMain" />
+        <activity android:name=".Document"></activity>
     </application>
 
 </manifest>

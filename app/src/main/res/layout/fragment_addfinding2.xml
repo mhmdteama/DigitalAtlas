@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.compubase.mhmd.digitalatlas.Addfinding2">
+    tools:context="com.compubase.mhmd.digitalatlas.Sample2Activity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -203,7 +203,7 @@
         android:text="Finish"
         android:textColor="#fff"
         android:textSize="25sp"
-        android:id="@+id/toFinding3"
+        android:id="@+id/tofinish"
         android:background="@drawable/redbutton"/>
 
 </LinearLayout>
