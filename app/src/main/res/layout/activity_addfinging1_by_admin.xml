@@ -1,30 +1,37 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.compubase.mhmd.digitalatlas.AddFinfing1">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="0dp"
-        android:background="#00bfff"
-        android:theme="?attr/actionBarTheme">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="Add Finding(s)"
-                android:textAlignment="center"
-                android:textColor="#ffffff"
-                android:textSize="30sp" />
-        </RelativeLayout>
-    </android.support.v7.widget.Toolbar>
-
+    tools:context="com.compubase.mhmd.digitalatlas.Addfinging1ByAdmin"
+    android:orientation="vertical">
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_marginTop="20dp"
+      android:layout_marginLeft="10dp"
+      android:layout_marginRight="10dp"
+      >
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="The Patient isn't Approved"
+          android:layout_weight="1"
+          android:textColor="#000"
+          android:textSize="18sp"
+          android:id="@+id/approvetext"/>
+      <Button
+          android:layout_width="150dp"
+          android:layout_height="40dp"
+          android:background="@drawable/redbutton"
+          android:layout_weight="1"
+          android:text="Approve"
+          android:textColor="#fff"
+          android:textSize="20sp"
+          android:id="@+id/approveadmin"/>
+  </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/picture"
                 android:layout_weight="1"
-                android:id="@+id/addpic"/>
+                android:id="@+id/addpicadmin"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -71,10 +78,11 @@
             android:background="@drawable/redbutton"
             android:textSize="20dp"
             android:text="Next"
-            android:id="@+id/nextToFinding2"
-            android:textColor="#fff"
             android:enabled="false"
-
+            android:id="@+id/nextToSimple2Admin"
+            android:textColor="#fff"
             />
     </RelativeLayout>
+
+
 </LinearLayout>

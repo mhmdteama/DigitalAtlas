@@ -129,6 +129,7 @@ public class PaientList extends Fragment {
                 GetDataAdapter2.setId(childJSONObject.getString("id"));
                 GetDataAdapter2.setImgUrl(childJSONObject.getString("image"));
                 GetDataAdapter2.setUseremail(childJSONObject.getString("email"));
+                GetDataAdapter2.setIsApproved(childJSONObject.getString("approval"));
                 patients.add(GetDataAdapter2);
             }
 

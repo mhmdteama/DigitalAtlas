@@ -6,6 +6,15 @@ public class Patient {
     private String id;
     private String useremail;
     private String imgUrl;
+    private String isApproved;
+
+    public String getIsApproved() {
+        return isApproved;
+    }
+
+    public void setIsApproved(String isApproved) {
+        this.isApproved = isApproved;
+    }
 
     public String getName() {
         return name;

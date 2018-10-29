@@ -138,25 +138,25 @@ public class Sample2Activity extends Activity {
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //volleyConnection();
-                showMessage(userage);
-                showMessage(usergender);
-                showMessage(usersystem);
-                showMessage(userfinding);
-                showMessage(userrq1);
-                showMessage(userrq2);
-                showMessage(userrq3);
-                showMessage(userrq4);
-                showMessage(userop1);
-                showMessage(userop2);
-                showMessage(userimg);
-                showMessage(pic1);
-                showMessage(pic2);
-                showMessage(pic3);
-                showMessage(pic4);
-                showMessage(pic5);
-                showMessage(userabnormal);
-                showMessage(usersenario);
+                volleyConnection();
+//                showMessage(userage);
+//                showMessage(usergender);
+//                showMessage(usersystem);
+//                showMessage(userfinding);
+//                showMessage(userrq1);
+//                showMessage(userrq2);
+//                showMessage(userrq3);
+//                showMessage(userrq4);
+//                showMessage(userop1);
+//                showMessage(userop2);
+//                showMessage(userimg);
+//                showMessage(pic1);
+//                showMessage(pic2);
+//                showMessage(pic3);
+//                showMessage(pic4);
+//                showMessage(pic5);
+//                showMessage(userabnormal);
+//                showMessage(usersenario);
 
             }
         });
@@ -310,7 +310,19 @@ public class Sample2Activity extends Activity {
 
     public void volleyConnection()
     {
-        GET_JSON_DATA_HTTP_URL = "http://alosboiya.com.sa/atlas.asmx/insert_pat?";
+
+        String type;
+        type = tinyDB.getString("updateorcreate");
+
+        if(type.equals("update"))
+        {
+            GET_JSON_DATA_HTTP_URL = "http://alosboiya.com.sa/atlas.asmx/update_pat?";
+        }else
+            {
+                GET_JSON_DATA_HTTP_URL = "http://alosboiya.com.sa/atlas.asmx/insert_pat?";
+            }
+
+
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, GET_JSON_DATA_HTTP_URL,
 

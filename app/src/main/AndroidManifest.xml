@@ -40,7 +40,8 @@
         <activity android:name=".Sample2Activity" />
         <activity android:name=".Sample1Activity" />
         <activity android:name=".AdminMain" />
-        <activity android:name=".Document"></activity>
+        <activity android:name=".Document" />
+        <activity android:name=".Addfinging1ByAdmin"></activity>
     </application>
 
 </manifest>

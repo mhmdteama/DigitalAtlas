@@ -1,98 +1,173 @@
 package com.compubase.mhmd.digitalatlas;
 
 
-import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
-import static android.app.Activity.RESULT_OK;
-import static android.media.MediaRecorder.VideoSource.CAMERA;
+public class Addfinging1ByAdmin extends AppCompatActivity {
 
-
-public class AddFinfing1 extends Fragment {
-
+    RequestQueue requestQueue;
+    Button approve ,next;
+    String id;
     final int PICK_IMAGE_REQUEST = 71;
-    ImageView pikeimage;
-    Button next;
-    View view ;
+    TextView approveText;
+    String isApproved;
+    Uri filePath;
+    ImageView addnewimg;
     String imgUrl;
-
     FirebaseStorage storage;
     StorageReference storageReference;
 
-    Uri filePath;
 
-
-
-    public AddFinfing1() {
-        // Required empty public constructor
-    }
-
+    TinyDB tinyDB;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_addfinging1_by_admin);
+        approveText = findViewById(R.id.approvetext);
+        approve = findViewById(R.id.approveadmin);
+        next=findViewById(R.id.nextToSimple2Admin);
+        addnewimg= findViewById(R.id.addpicadmin);
 
-        view =   inflater.inflate(R.layout.fragment_add_finfing1, container, false);
-        return view;
 
-    }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        pikeimage = view.findViewById(R.id.addpic);
+        tinyDB = new TinyDB(this);
 
-        FirebaseApp.initializeApp(getContext());
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        next =view.findViewById(R.id.nextToFinding2);
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Sample1Activity.class);
+                Intent intent =new Intent(Addfinging1ByAdmin.this , Sample1Activity.class);
                 intent.putExtra("imageURL",imgUrl);
                 startActivity(intent);
 
+                tinyDB.putString("updateorcreate","update");
             }
         });
-        pikeimage.setOnClickListener(new View.OnClickListener() {
+        addnewimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPicturDialog();
             }
         });
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            id = extras.getString("userID");
+            isApproved = extras.getString("userApproval");
+        }
+
+        assert isApproved != null;
+        if(isApproved.equals("yes"))
+        {
+            approveText.setVisibility(View.GONE);
+            approve.setText("Approved");
+            approve.setBackground(this.getDrawable(R.drawable.greenbutton));
+
+        }
+
+        approve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String URL = "http://atlas.alosboiya.com.sa//atlas.asmx/update_approval_pat?";
+
+
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
+
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                                if(response.equals("True"))
+                                {
+                                    approveText.setVisibility(View.GONE);
+                                    approve.setText("Approved");
+                                    approve.setBackground(getDrawable(R.drawable.greenbutton));
+                                }
+
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+
+                        showMessage();
+
+                    }
+
+                }) {
+
+
+                    @Override
+                    protected Map<String,String> getParams(){
+                        Map<String,String> params = new HashMap<>();
+                        params.put("id", id);
+                        params.put("approval", "yes");
+                        return params;
+                    }
+
+                };
+
+                requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+                requestQueue.add(stringRequest);
+
+            }
+        });
+
+
     }
+
+
+    private void showMessage() {
+        Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();
+    }
+
+
+
+
+
     public  void  showPicturDialog()
     {
-        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
         pictureDialog.setTitle("Select Action");
         String[] pictureDlialogItem={"Select From Gallery" ,
                 "Capture From Camera"};
@@ -123,13 +198,12 @@ public class AddFinfing1 extends Fragment {
         Intent pictureIntent = new Intent(
                 MediaStore.ACTION_IMAGE_CAPTURE
         );
-        if(pictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+        if(pictureIntent.resolveActivity(getApplication().getPackageManager()) != null) {
             startActivityForResult(pictureIntent,
                     PICK_IMAGE_REQUEST);
         }
 
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -138,10 +212,10 @@ public class AddFinfing1 extends Fragment {
         {
             filePath = data.getData();
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), filePath);
-                pikeimage.setImageBitmap(bitmap);
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getApplication().getContentResolver(), filePath);
+                addnewimg.setImageBitmap(bitmap);
                 next.setEnabled(true);
-                next.setBackground(getContext().getDrawable(R.drawable.greenbutton));
+                next.setBackground(this.getDrawable(R.drawable.greenbutton));
 
                 uploadImage();
 
@@ -152,15 +226,11 @@ public class AddFinfing1 extends Fragment {
             }
         }
     }
-
-
-
-
     private void uploadImage() {
 
         if(filePath != null)
         {
-            final ProgressDialog progressDialog = new ProgressDialog(getContext());
+            final ProgressDialog progressDialog = new ProgressDialog(getApplicationContext());
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
@@ -170,11 +240,11 @@ public class AddFinfing1 extends Fragment {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Uploaded", Toast.LENGTH_SHORT).show();
                             Uri downloadUrl = taskSnapshot.getUploadSessionUri(); //getDownloadUrl not found
                             assert downloadUrl != null;
                             imgUrl = downloadUrl.toString();
-                            showMessage(imgUrl);
+                            showMessage();
 
                         }
                     })
@@ -182,7 +252,7 @@ public class AddFinfing1 extends Fragment {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -196,8 +266,5 @@ public class AddFinfing1 extends Fragment {
         }
     }
 
-    private void showMessage(String _s) {
-        Toast.makeText(getActivity().getApplicationContext(), _s, Toast.LENGTH_LONG).show();
-    }
 
 }
